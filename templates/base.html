@@ -1,0 +1,82 @@
+{% load static %}
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% tailwind_css %}
+
+</head>
+
+<body class="font-mono select-none">
+    <div class="bg-gray-200 relative">
+        {% if user.is_authenticated %}
+        <header class="px-24 flex justify-center item-center h-16 shadow-lg mb-3">
+            <div class="flex pt-2 justify-between w-3/4 ">
+                <div class="flex gap-6 justify-center item-center w-3/4">
+                    <a class="font-bold hover:text-green-600" href="{% url 'home' %}">Home</a>
+                    <a class="font-bold hover:text-green-600" href="">My Portfolio</a>
+                    <a class="font-bold hover:text-green-600" href="">News</a>
+                    <a class="font-bold hover:text-green-600" href="">Contact</a>
+                </div>
+                <div class="relative">
+                    <div class="flex justify-center gap-3 item-center">
+                        <div onclick="myclick()" class="w-12 h-12 rounded-full flex justify-center">
+                            <img src="{{ userprofile.image.url }}" alt=""
+                                class="select-none hover:border-2 hover:border-green-600 object-cover rounded-full w-12 h-12">
+                        </div>
+                        <p class="text-gray-600 font-bold">{{ userprofile.users.username|title }}</p>
+                    </div>
+                    <div id="popup"
+                        class=" hidden bg-white gap-3 flex-col w-60 px-4 py-4 absolute z-20 top-12 shadow-black-500/50 shadow-2xl">
+                        <a class="font-bold hover:text-green-600" href="{% url 'profile' %}">Profile</a>
+                        <a class="font-bold hover:text-green-600" href="{%url 'userpost' %}">All Posts</a>
+                        <a class="font-bold hover:text-green-600" href="{% url 'newpost' %}">New Post</a>
+                        <a class="font-bold hover:text-green-600" href="">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% else %}
+        <header class="px-24 flex justify-center item-center h-16 shadow-lg mb-3">
+            <div class="flex pt-2 justify-between w-3/4">
+                <div class="flex gap-6 justify-center item-center w-3/4">
+                    <a class="font-bold hover:text-green-600" href="{% url 'home' %}">Home</a>
+                    <a class="font-bold hover:text-green-600" href="">My Portfolio</a>
+                    <a class="font-bold hover:text-green-600" href="">News</a>
+                    <a class="font-bold hover:text-green-600" href="">Contact</a>
+                </div>
+                <div class="">
+                    <a class="font-bold hover:text-green-600" href="{% url 'Register'%}">Register</a>
+                    <span>/</span>
+                    <a class="font-bold hover:text-green-600" href="{% url 'login'%}">login</a>
+                </div>
+        </header>
+        {% endif %}
+<!-- message -->
+        {% if messages %}
+
+            {% for message in messages %}
+                {% if message.tags %}
+                    <div id="popon_message" class="bg-green-400 w-1/2 mx-auto rounded h-12 flex justify-center item-center shadow-green-500/50 shadow-lg -{{ message.tags }}">
+                        <p class="text-white text-center flex-col flex justify-center item-center text-xl">{{ message }}</p>
+                    </div>
+                {% endif %}
+                
+            {% endfor %}
+
+        {% endif %}
+<!-- end message tag -->
+
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <script src="{% static 'javascript/app.js' %}"></script>
+</body>
+
+</html>

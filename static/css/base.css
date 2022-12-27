@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+#popon_message {
+    animation: message 5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+@keyframes message {
+    from {
+        transform: translateX(50px);
+    }
+
+    to {
+        transform: translateX(-0px);
+    }
+}
+
+#dialog {
+    background-color: rgba(1, 1, 1, 0.6);
+}

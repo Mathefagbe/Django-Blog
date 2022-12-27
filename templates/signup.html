@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% load tailwind_tags %}
+{% load static %}
+
+
+{% block content %}
+<div class=" h-screen px-96 mb-4">
+    <div class="flex flex-col justify-start item-center">
+        <h1 class="text-3xl font-bold text-black mb-3 font-sarif text-center ">SIGN UP</h1>
+        <div>
+            <form method="post" class="w-full flex justify-center item-center flex-col gap-3 ">
+                {% csrf_token %}
+                {{form |crispy }}
+                <div class="mt-4 flex justify-center item-center ">
+                    <button class="bg-green-500 hover:bg-green-700 text-white text-xl font-bold  py-2 w-80 rounded-lg ">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div
+{% endblock content %}

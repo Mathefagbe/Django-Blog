@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="h-screen bg-gray-200">
+    {% for post in Posts %}
+    <div class="flex justify-center item-center">
+        <div class="w-1/2 bg-white flex justify-start item-start gap-2 shadow-lg shadow-red mb-2 rounded-lg">
+            <div class="h-52 w-64">
+                <img src="{{ post.images.url }}" alt="" class="h-52 w-64 object-cover rounded-lg">
+            </div>
+            <div class="relative w-2/3">
+                <h1 class="text-black text-left font-bold text-xl break-words">{{post.title|upper}}</h1>
+                <div class="flex justify-start item-center gap-3 mt-3 mb-3 ">
+                    <div>
+                        <img src="{{ post.author_profile.image.url }}" alt="" class="object-cover w-8 h-8 rounded-full">
+                    </div>
+                    <div class="flex flex-col justify-around item-center">
+                        <p class="text-xs text-gray-600"> {{post.author | title}}</p>
+                        <p class="text-xs text-gray-600">{{post.date_published}}</p>
+                    </div>
+                </div>
+                <h1 class="text-gray-600 text-left font-900 text-sm">{{post.title|upper}}</h1>
+                <div class="absolute bottom-0 right-0 ">
+                    <a class="text-xs font-400 text-gray-600 hover:text-green-600 cursor-pointer font-bold"
+                        href="{% url 'details' post.id %}">Read More <span> > </span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

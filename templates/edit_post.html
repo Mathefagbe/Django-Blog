@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% block content %}
+<div class="px-20">
+    <h1 class="text-3xl font-sarif  text-left text-xl mb-3">EDIT POST</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}}
+        {{form |crispy }}
+        <div class="flex justify-start item-center">
+            <button class="bg-green-500 hover:bg-green-700 text-white text-xl font-bold mt-8 py-2 px-10 rounded-lg ">
+                Save
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

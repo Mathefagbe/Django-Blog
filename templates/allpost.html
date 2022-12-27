@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% load static %}
+{% block content %}
+
+<div class="h-screen bg-gray-200 ">
+    {% if Posts %}
+    {% for post in Posts %}
+    <div class="flex justify-center item-center">
+        <div class="w-1/2 bg-white flex justify-start item-start gap-2 shadow-lg shadow-red mb-2 rounded-lg">
+            <div class="h-52 w-64">
+                <img src="{{ post.images.url }}" alt="" class="h-52 w-64 object-cover rounded-lg">
+            </div>
+            <div class="relative w-2/3">
+                <h1 class="text-black text-left font-bold text-xl break-words">{{post.title|upper}}</h1>
+                <div class="flex justify-start item-center gap-3 mt-3 mb-3 ">
+                    <div>
+                        <img src="{{ post.author_profile.image.url }}" alt="" class="object-cover w-8 h-8 rounded-full">
+                    </div>
+                    <div class="flex flex-col justify-around item-center">
+                        <p class="text-xs text-gray-600"> {{post.author | title}}</p>
+                        <p class="text-xs text-gray-600">{{post.date_published}}</p>
+                    </div>
+                </div>
+                <h1 class="text-gray-600 text-left font-900 text-sm">{{post.title|upper}}</h1>
+                <div class="bottom-0 mb-2 absolute flex gap-2">
+                    <div
+                        class=" bg-green-400 hover:bg-green-700 rounded flex flex-col justify-center shadow-green-500/50 shadow-lg px-4 ">
+                        <a class="text-white text-sm flex justify-center" href="{% url 'editpost' post.id %} ">Edit</a>
+                    </div>
+                    <div
+                        class=" bg-green-400 hover:bg-green-700 rounded flex flex-col justify-center shadow-green-500/50 shadow-lg px-4 ">
+                        <a class="text-white text-sm flex justify-center" href="{% url 'deletePost' post.id %} ">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}
+    <div id="dialog" class="absolute top-0 w-full h-screen hidden flex-col  justify-center">
+        <div class="bg-white rounded top-24 left-0 right-0 w-3/4 h-96 flex flex-col justify-center mx-auto gap-3 z-10 shadow-black-500/50 shadow-lg">
+            <p class="text-center text-2xl">Are You Sure You Want To Delete This Post</p>
+            <div class=" bg-green-400 hover:bg-green-700 w-32 rounded-lg h-12 flex flex-col justify-center shadow-green-500/50 shadow-lg mx-auto ">
+                <a class="text-white flex justify-center" href="">confirm delete</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="w-3/4 h-3/4 mx-auto flex justify-center flex-col" >
+        <p class="text-center">You Have Not Created A Post</p>
+        <div class="mx-auto bg-green-400 hover:bg-green-700 w-32 rounded-lg h-12 flex flex-col justify-center shadow-green-500/50 shadow-lg">
+            <a class="text-white flex justify-center " href="{% url 'newpost' %}" > Create Post</a>
+        </div>
+    </div>
+    {% endif %} 
+</div>
+{% endblock content %}
