@@ -42,7 +42,11 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            width:{
+                '128':'32rem'
+            }
+        },
     },
     plugins: [
         /**

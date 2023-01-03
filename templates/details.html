@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% load tailwind_filters %}
 {% load static %}
-
-
 {% block content %}
-<div class="flex flex-col item-start justify-start w-full px-10">
-    <h1 class="text-black text-left font-900 text-3xl">{{post.title|upper}}</h1>
+<div id="{{post.id}}" class="post_like flex flex-col item-start justify-start w-full px-10">
+    <h1  class="text-black text-left font-900 text-3xl">{{post.title|upper}}</h1>
+    <div class="Tag flex gap-2 ">
+        <p>Tags:</p>
+        {% for tag in post.tag.all %}
+            <a href="{% url 'tag' tag.slug %}" class="bg-green-400 text-white px-4 py-1 rounded">{{tag}}</a>
+        {% endfor %}
+    </div>
     <div class="flex justify-start item-center gap-3 mt-3 mb-3 ">
         <div>
             <img src="{{ post.author_profile.image.url }}" alt="" class="object-cover w-12 h-12 rounded-full">
@@ -22,38 +26,14 @@
         <p>{{post.body|safe }}</p>
     </div>
     <hr>
-    <div class="flex flex-col justify-start item-start ">
-        <h1 class="text-xl font-bold text-gray-600 mb-3 font-sarif text-left">Comments</h1>
-        <div>
-            <form method="post" action="{% url 'comment' post.id %}" class="w-2/6 flex justify-start item-start flex-col gap-2 ">
-                {% csrf_token %}
-                {{form |crispy }}
-                <div class="mt-4 flex  ">
-                    <button class="bg-green-500 hover:bg-green-700 text-white text-sm font-bold  py-2 w-1/4 rounded-lg ">
-                        comment
-                    </button>
-                </div>
-            </form>
-        </div>
+    <div class="text-gray-300 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
+            class="bi bi-hand-thumbs-up-fill likes hover:text-green-600" viewBox="0 0 16 16">
+            <path
+                d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
+        </svg>
+        <p id="like_count">{{post.like_count}} likes</p>
     </div>
-    <hr>
-    <div class="flex flex-col justify-start">
-        <h2 class="text-gray-600 text-lg text-left mb-4">Total Comments:{{comments|length}}</h2>
-        {% for comment in comments %}
-        <div class="flex flex-col justify-start mb-4 w-2/4 border-gray-300 border-2 rounded ">
-            <div class="flex gap-3 bg-gray-400 rounded-tr rounded-tl justify-start item-center pl-4 pt-2">
-                <img src="{% static '/image/user.png' %}" alt="" class=" w-4 h-4 ">
-                <p class="text-gray-600 text-left text-black ">{{comment.name|upper}}</p>
-            </div>
-            <div class="flex gap-3 pl-4">
-                <p class="text-gray-600 text-lg text-left  w-80 break-words">{{comment.comments}}</p>
-            </div>
-            <div class="flex gap-3 mt-4 pl-4">
-                <img src="{% static '/image/clock.png' %}" alt="" class="w-4 h-4">
-                <p class="text-gray-600 text-sm text-left ">{{comment.date_commment}}</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    {% include 'comments.html' with post=post %}
 </div>
 {% endblock content %}

@@ -729,90 +729,37 @@ select {
   bottom: 0px;
 }
 
-.top-12 {
-  top: 3rem;
-}
-
-.right-0 {
-  right: 0px;
-}
-
 .top-0 {
   top: 0px;
-}
-
-.right-20 {
-  right: 5rem;
-}
-
-.right-10 {
-  right: 2.5rem;
-}
-
-.right-12 {
-  right: 3rem;
-}
-
-.right-16 {
-  right: 4rem;
-}
-
-.top-16 {
-  top: 4rem;
 }
 
 .top-24 {
   top: 6rem;
 }
 
-.right-24 {
-  right: 6rem;
-}
-
-.right-32 {
-  right: 8rem;
-}
-
-.right-64 {
-  right: 16rem;
-}
-
-.right-40 {
-  right: 10rem;
-}
-
-.right-48 {
-  right: 12rem;
-}
-
-.right-52 {
-  right: 13rem;
-}
-
-.right-56 {
-  right: 14rem;
-}
-
 .left-0 {
   left: 0px;
 }
 
-.z-20 {
-  z-index: 20;
+.right-0 {
+  right: 0px;
+}
+
+.top-12 {
+  top: 3rem;
 }
 
 .z-10 {
   z-index: 10;
 }
 
+.z-20 {
+  z-index: 20;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .mb-2 {
@@ -827,28 +774,20 @@ select {
   margin-bottom: 0.75rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mr-10 {
-  margin-right: 2.5rem;
-}
-
-.mr-12 {
-  margin-right: 3rem;
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .mt-20 {
   margin-top: 5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .block {
@@ -875,16 +814,20 @@ select {
   height: 2rem;
 }
 
-.h-40 {
-  height: 10rem;
+.h-96 {
+  height: 24rem;
 }
 
-.h-16 {
-  height: 4rem;
+.h-3\/4 {
+  height: 75%;
 }
 
 .h-12 {
   height: 3rem;
+}
+
+.h-16 {
+  height: 4rem;
 }
 
 .h-4 {
@@ -893,18 +836,6 @@ select {
 
 .h-64 {
   height: 16rem;
-}
-
-.h-24 {
-  height: 6rem;
-}
-
-.h-96 {
-  height: 24rem;
-}
-
-.h-3\/4 {
-  height: 75%;
 }
 
 .w-1\/2 {
@@ -923,8 +854,16 @@ select {
   width: 2rem;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .w-3\/4 {
   width: 75%;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .w-12 {
@@ -933,10 +872,6 @@ select {
 
 .w-60 {
   width: 15rem;
-}
-
-.w-full {
-  width: 100%;
 }
 
 .w-2\/6 {
@@ -957,14 +892,6 @@ select {
 
 .w-80 {
   width: 20rem;
-}
-
-.w-32 {
-  width: 8rem;
-}
-
-.w-screen {
-  width: 100vw;
 }
 
 .cursor-pointer {
@@ -1045,6 +972,15 @@ select {
   border-width: 2px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
+.border-green-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(22 163 74 / var(--tw-border-opacity));
+}
+
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1075,14 +1011,14 @@ select {
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
-.bg-green-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 83 45 / var(--tw-bg-opacity));
-}
-
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+
+.bg-green-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 83 45 / var(--tw-bg-opacity));
 }
 
 .bg-gray-400 {
@@ -1090,14 +1026,9 @@ select {
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 
-.bg-gray-100 {
+.bg-red-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
 .object-cover {
@@ -1113,6 +1044,11 @@ select {
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .px-8 {
@@ -1135,19 +1071,9 @@ select {
   padding-right: 5rem;
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
 .px-96 {
   padding-left: 24rem;
   padding-right: 24rem;
-}
-
-.py-64 {
-  padding-top: 16rem;
-  padding-bottom: 16rem;
 }
 
 .pt-2 {
@@ -1174,6 +1100,14 @@ select {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -1194,6 +1128,11 @@ select {
   line-height: 1.25rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1202,11 +1141,6 @@ select {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-bold {
@@ -1274,11 +1208,6 @@ select {
 .hover\:bg-green-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(21 128 61 / var(--tw-bg-opacity));
-}
-
-.hover\:text-yellow-900:hover {
-  --tw-text-opacity: 1;
-  color: rgb(113 63 18 / var(--tw-text-opacity));
 }
 
 .hover\:text-green-600:hover {

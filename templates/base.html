@@ -1,5 +1,6 @@
 {% load static %}
 {% load tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,11 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
     {% tailwind_css %}
 
 </head>
 
-<body class="font-mono select-none">
+<body class="font-sans select-none">
     <div class="bg-gray-200 relative">
         {% if user.is_authenticated %}
         <header class="px-24 flex justify-center item-center h-16 shadow-lg mb-3">
@@ -26,7 +28,7 @@
                 </div>
                 <div class="relative">
                     <div class="flex justify-center gap-3 item-center">
-                        <div onclick="myclick()" class="w-12 h-12 rounded-full flex justify-center">
+                        <div onclick="menu()" class="w-12 h-12 rounded-full flex justify-center">
                             <img src="{{ userprofile.image.url }}" alt=""
                                 class="select-none hover:border-2 hover:border-green-600 object-cover rounded-full w-12 h-12">
                         </div>
@@ -37,7 +39,7 @@
                         <a class="font-bold hover:text-green-600" href="{% url 'profile' %}">Profile</a>
                         <a class="font-bold hover:text-green-600" href="{%url 'userpost' %}">All Posts</a>
                         <a class="font-bold hover:text-green-600" href="{% url 'newpost' %}">New Post</a>
-                        <a class="font-bold hover:text-green-600" href="">Logout</a>
+                        <a class="font-bold hover:text-green-600" href="{% url 'logout' %}">Logout</a>
                     </div>
                 </div>
             </div>
@@ -58,25 +60,46 @@
                 </div>
         </header>
         {% endif %}
-<!-- message -->
+        <!-- message -->
         {% if messages %}
+        {% for message in messages %}
+        {% if message.tags %}
+        <div id="popon_message"
+            class="bg-green-400 w-1/2 mx-auto rounded h-12 flex justify-center item-center shadow-green-500/50 shadow-lg -{{ message.tags }}">
+            <p class="text-white text-center flex-col flex justify-center item-center text-xl">{{ message }}</p>
+        </div>
+        {% endif %}
 
-            {% for message in messages %}
-                {% if message.tags %}
-                    <div id="popon_message" class="bg-green-400 w-1/2 mx-auto rounded h-12 flex justify-center item-center shadow-green-500/50 shadow-lg -{{ message.tags }}">
-                        <p class="text-white text-center flex-col flex justify-center item-center text-xl">{{ message }}</p>
-                    </div>
-                {% endif %}
-                
-            {% endfor %}
+        {% endfor %}
 
         {% endif %}
-<!-- end message tag -->
+        <!-- end message tag -->
 
         {% block content %}
         {% endblock content %}
     </div>
+   <script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+   </script>
+
+
     <script src="{% static 'javascript/app.js' %}"></script>
+
 </body>
 
 </html>

@@ -23,10 +23,6 @@ class UserLogin(SuccessMessageMixin,LoginView):
     template_name="login.html"
     success_message="login successful"
 
-    # def form_valid(self, form):
-    #     messages.SUCCESS(self.request,f"sucess full login")
-    #     return super().form_valid(form)
-
     def get_success_url(self) -> str:
         return reverse("home")
  

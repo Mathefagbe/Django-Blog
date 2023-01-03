@@ -1,0 +1,40 @@
+{% load tailwind_filters %}
+{% load static %}
+<div class="flex flex-col justify-start item-start ">
+    <h1 class="text-xl font-bold text-gray-600 mb-3 font-sarif text-left">Comments</h1>
+    <div>
+        <form method="post" action="{% url 'comment' post.slug  %}"
+            class="w-2/6 flex justify-start item-start flex-col gap-2 ">
+            {% csrf_token %}
+            {{form |crispy }}
+            <div class="mt-4 flex  ">
+                <button
+                    class="bg-green-500 hover:bg-green-700 text-white text-sm font-bold  py-2 w-1/4 rounded-lg ">
+                    comment
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<hr>
+<div class="flex flex-col justify-start">
+    <h2 class="text-gray-600 text-lg text-left mb-4">Total Comments:{{comments|length}}</h2>
+    {% for comment in comments %}
+    <div class="flex flex-col justify-start mb-4 w-2/4 border-gray-300 border-2 rounded ">
+        <div class="flex gap-3 bg-gray-400 rounded-tr rounded-tl justify-start item-center pl-4 pt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+            </svg>
+            <p class="text-gray-600 text-left text-black ">{{comment.name|upper}}</p>
+        </div>
+        <div class="flex gap-3 pl-4">
+            <p class="text-gray-600 text-lg text-left  w-80 break-words">{{comment.comments}}</p>
+        </div>
+        <div class="flex gap-3 mt-4 pl-4">
+            <img src="{% static '/image/clock.png' %}" alt="" class="w-4 h-4">
+            <p class="text-gray-600 text-sm text-left ">{{comment.date_commment}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>

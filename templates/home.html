@@ -23,7 +23,7 @@
                 <h1 class="text-gray-600 text-left font-900 text-sm">{{post.title|upper}}</h1>
                 <div class="absolute bottom-0 right-0 ">
                     <a class="text-xs font-400 text-gray-600 hover:text-green-600 cursor-pointer font-bold"
-                        href="{% url 'details' post.id %}">Read More <span> > </span></a>
+                        href="{% url 'details' post.slug %}">Read More <span> > </span></a>
                 </div>
             </div>
         </div>
