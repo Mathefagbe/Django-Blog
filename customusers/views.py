@@ -13,6 +13,7 @@ from django.contrib import messages
 class SignUpView(CreateView):
     form_class=CustomUserCreationform
     template_name="signup.html"
+    
 
 
 

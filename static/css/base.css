@@ -7,7 +7,9 @@
 
 #popon_message {
     animation: message 5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    
 }
+
 
 @keyframes message {
     from {
@@ -21,4 +23,8 @@
 
 #dialog {
     background-color: rgba(1, 1, 1, 0.6);
+}
+
+.wrapper{
+    height: 100%;
 }

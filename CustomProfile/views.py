@@ -3,7 +3,7 @@ from django.urls import reverse
 from .models import UserProfile
 from django.views import generic
 from blog.models import Post
-from blog.views import UserProfileViewMixin
+from blog.mixin import UserProfileViewMixin
 from .forms import ProfileForm
 
 

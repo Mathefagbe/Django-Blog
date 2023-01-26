@@ -15,11 +15,6 @@ const menu = () => {
 }
 
 
-
-// function delete_btn(){
-//     print('haaaa')
-// }
-
 delete_btn.forEach((btn) => {
     console.log(btn)
     btn.addEventListener("click", (e) => {
@@ -49,6 +44,7 @@ delete_btn.forEach((btn) => {
 
     })
 })
+
 
 like.addEventListener('click', (e) => {
     e.preventDefault()

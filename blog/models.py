@@ -8,6 +8,8 @@ from tinymce import models as tinymce_models
 from django.utils.text import slugify
 from django.contrib.contenttypes.fields import GenericRelation
 from taggit.managers import TaggableManager
+from PIL import Image
+
 
 
 

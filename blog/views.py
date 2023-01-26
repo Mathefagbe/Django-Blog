@@ -3,7 +3,6 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView,ListView,DetailView,DeleteView,UpdateView
 from blog.mixin import UserProfileViewMixin
 from .models import Post,Comment
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormMixin
 from .forms import CommentForm
 from django.db.models import Q
@@ -11,6 +10,7 @@ from CustomProfile.models import UserProfile
 from django.http import Http404, JsonResponse
 import json
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 class PostListView(UserProfileViewMixin,ListView):
@@ -32,7 +32,8 @@ class TagPostList(UserProfileViewMixin,ListView):
     def get_queryset(self):
         return super().get_queryset()\
             .select_related('author','author_profile')\
-            .filter(Q(slug__icontains=self.kwargs['tag_slug']) |Q(slug__istartswith=self.kwargs['tag_slug']))
+            .filter(Q(slug__icontains=self.kwargs['tag_slug'])\
+             |Q(slug__istartswith=self.kwargs['tag_slug']))
       
 
 class DetalsListView(FormMixin,UserProfileViewMixin,DetailView):
@@ -52,18 +53,20 @@ class DetalsListView(FormMixin,UserProfileViewMixin,DetailView):
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         post=Post.objects.get(slug=self.kwargs['slug'])
-        context["comments"]=Comment.objects.filter(post=post)
+        context["comments"]=Comment.objects.filter(post=post).all()
         return context
     
 
 
 
 
-class CreatePost(LoginRequiredMixin,UserProfileViewMixin,CreateView):
+class CreatePost(UserProfileViewMixin,CreateView):
     model=Post
     login_url="signup"
     template_name="createpost.html"
     fields=["title","body","images","tag"]
+   
+    
     
 
     def form_valid(self, form):
